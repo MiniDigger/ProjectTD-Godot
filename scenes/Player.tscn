@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/Player.cs" type="Script" id=1]
+[ext_resource path="res://scripts/SwipeDetector.cs" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1, 1 )
+
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource( 1 )
+PanSpeed = 1000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Camera" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+zoom = Vector2( 2, 2 )
+limit_left = 0
+limit_top = 0
+limit_right = 2500
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+editor_draw_limits = true
+
+[node name="SwipeDetector" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="SwipeDetector"]
+wait_time = 0.15
+one_shot = true
+[connection signal="Swiped" from="SwipeDetector" to="." method="_on_SwipeDetector_Swiped"]
+[connection signal="timeout" from="SwipeDetector/Timer" to="SwipeDetector" method="_on_Timer_timeout"]
