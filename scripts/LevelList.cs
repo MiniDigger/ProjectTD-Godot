@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 namespace ProjectTD.scripts {
@@ -25,7 +26,7 @@ public class LevelList : Node2D {
 		}
 
 		if (Levels.Count > 0) {
-			GD.Print($"Found {Levels.Count} levels: {Levels}");
+			GD.Print($"Found {Levels.Count} levels: {string.Join(", ",Levels)}");
 		}
 		else {
 			GD.Print("Found no levels!");

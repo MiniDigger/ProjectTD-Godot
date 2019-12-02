@@ -1,0 +1,8 @@
+[gd_scene format=2]
+
+[node name="GUI" type="CanvasLayer"]
+
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "ProjectTD v0.0.1"
