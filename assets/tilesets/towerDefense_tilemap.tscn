@@ -3,5 +3,7 @@
 [ext_resource path="res://assets/tilesets/towerDefense_tileset.tres" type="TileSet" id=1]
 
 [node name="TileMap" type="TileMap"]
+editor/display_folded = true
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 128, 128 )
+format = 1

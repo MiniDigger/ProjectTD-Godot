@@ -50,12 +50,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="scripts\enemies\Enemy.cs" />
     <Compile Include="scripts\Game.cs" />
     <Compile Include="scripts\Global.cs" />
+    <Compile Include="scripts\hud\Healthbar.cs" />
+    <Compile Include="scripts\hud\HUD.cs" />
     <Compile Include="scripts\LevelList.cs" />
     <Compile Include="scripts\Level.cs" />
     <Compile Include="scripts\levels\Level01.cs" />
     <Compile Include="scripts\levels\Level02.cs" />
+    <Compile Include="scripts\Nav.cs" />
     <Compile Include="scripts\Player.cs" />
     <Compile Include="scripts\screens\LevelSelectScreen.cs" />
     <Compile Include="scripts\screens\MainScreen.cs" />

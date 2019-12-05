@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/enemies/Enemy.cs" type="Script" id=1]
+[ext_resource path="res://assets/sprites/enemies/soldier_green.png" type="Texture" id=2]
+[ext_resource path="res://scenes/hud/Healthbar.tscn" type="PackedScene" id=3]
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource( 1 )
+maxHealth = 100.0
+worth = 1
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = null
+
+[node name="Rotating" type="PathFollow2D" parent="Path2D"]
+loop = false
+
+[node name="Sprite" type="Sprite" parent="Path2D/Rotating"]
+texture = ExtResource( 2 )
+
+[node name="Still" type="PathFollow2D" parent="Path2D"]
+rotate = false
+loop = false
+
+[node name="Healthbar" parent="Path2D/Still" instance=ExtResource( 3 )]
+margin_left = -19.5688
+margin_top = 17.6328
+margin_right = -0.568817
+margin_bottom = 17.6328

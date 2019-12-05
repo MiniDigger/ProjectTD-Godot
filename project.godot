@@ -23,6 +23,11 @@ config/icon="res://icon.png"
 
 Global="*res://scripts/Global.cs"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [editor_plugins]
 
 enabled=PoolStringArray(  )

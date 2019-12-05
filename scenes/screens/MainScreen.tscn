@@ -1,37 +1,39 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://scripts/screens/MainScreen.cs" type="Script" id=1]
+[ext_resource path="res://assets/themes/default.theme" type="Theme" id=1]
+[ext_resource path="res://scripts/screens/MainScreen.cs" type="Script" id=2]
 
 [node name="MainScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 481.0
-margin_top = 269.0
-margin_right = 543.0
-margin_bottom = 331.0
+margin_left = 454.0
+margin_top = 263.0
+margin_right = 569.0
+margin_bottom = 337.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
-margin_right = 62.0
-margin_bottom = 14.0
+margin_right = 115.0
+margin_bottom = 18.0
 text = "ProjectTD"
 
 [node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 18.0
-margin_right = 62.0
-margin_bottom = 38.0
+margin_top = 22.0
+margin_right = 115.0
+margin_bottom = 46.0
 text = "Play!"
 
 [node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 42.0
-margin_right = 62.0
-margin_bottom = 62.0
+margin_top = 50.0
+margin_right = 115.0
+margin_bottom = 74.0
 text = "Quit"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
