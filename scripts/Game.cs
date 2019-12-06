@@ -5,6 +5,7 @@ public class Game : Node2D {
 	private Level _Level;
 	private Player _player;
 
+	private int _points;
 	private int _money;
 	[Export()]
 	private int _startingMoney = 0;
@@ -24,10 +25,18 @@ public class Game : Node2D {
 		addMoney(0);
 		_health = _startingHealth;
 		removeHealth(0);
+		_points = 0;
+		addPoints(0);
 		
 		GD.Print($"Loaded level {_Level.Name}");
 	}
-
+	
+	public void addPoints(int amount) {
+		_points += amount;
+		
+		GetTree().CallGroup("ui", "updatePoints", _points);
+	}	
+	
 	public void addMoney(int amount) {
 		_money += amount;
 		

@@ -11,7 +11,7 @@ public class Enemy : Node2D {
 	private int worth;
 
 	[Export(PropertyHint.Range, "0,100000")]
-	private int speed = 350;
+	public int speed { get; set; } = 350;
 
 	private float health;
 
@@ -34,7 +34,7 @@ public class Enemy : Node2D {
 
 	public override void _Process(float delta) {
 		//damage(delta * 10);
-		if (_path2d.GetCurve().GetPointCount() > 0) {
+		if (_path2d.GetCurve() != null && _path2d.GetCurve().GetPointCount() > 0) {
 			_rotatingPathFollow.Offset += speed * delta;
 			_stillPathFollow.Offset += speed * delta;
 
@@ -46,7 +46,7 @@ public class Enemy : Node2D {
 
 	public void setPath(Curve2D curve2D) {
 		GlobalPosition = curve2D.GetPointPosition(0);
-		Position = new Vector2(0,0);
+		Position = new Vector2(0, 0);
 		_path2d.SetCurve(curve2D);
 		_rotatingPathFollow.SetOffset(0);
 		_stillPathFollow.SetOffset(0);

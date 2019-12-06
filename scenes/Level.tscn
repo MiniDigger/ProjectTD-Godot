@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/levels/Level01.cs" type="Script" id=1]
 [ext_resource path="res://scenes/Game.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/screens/PauseMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/hud/HUD.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/enemies/Enemy.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/Nav.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Nav.tscn" type="PackedScene" id=5]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
@@ -20,11 +19,10 @@ LevelWidth = 3000
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Enemy" parent="Enemies" instance=ExtResource( 5 )]
-position = Vector2( 75.5422, 245.507 )
-
 [node name="Turrets" type="Node" parent="."]
 
-[node name="Nav" parent="." instance=ExtResource( 6 )]
+[node name="Nav" parent="." instance=ExtResource( 5 )]
+
+[node name="Timers" type="Node" parent="."]
 
 [editable path="Nav"]

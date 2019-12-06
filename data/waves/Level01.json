@@ -1,0 +1,68 @@
+﻿[
+    {
+        "name": "TEST",
+        "groups": [
+            {
+                "name": "Test group",
+                "delay": 2000,
+                "interval": 1000,
+                "health": 10,
+                "speed": 350,
+                "type": "LAND",
+                "count": 10,
+                "spawn": {
+                    "x": 0.0,
+                    "y": 2.0
+                },
+                "goal": {
+                    "x": 19.0,
+                    "y": 5.0
+                },
+                "points": 1,
+                "money": 1
+            },
+            {
+                "name": "Test group 2",
+                "delay": 1000,
+                "interval": 200,
+                "health": 10,
+                "speed": 200,
+                "type": "LAND",
+                "count": 40,
+                "spawn": {
+                    "x": 0.0,
+                    "y": 2.0
+                },
+                "goal": {
+                    "x": 19.0,
+                    "y": 5.0
+                },
+                "points": 1,
+                "money": 1
+            },
+            
+            {
+                "name": "Test group 3",
+                "delay": 1000,
+                "interval": 100,
+                "health": 10,
+                "speed": 100,
+                "type": "LAND",
+                "count": 60,
+                "spawn": {
+                    "x": 0.0,
+                    "y": 2.0
+                },
+                "goal": {
+                    "x": 19.0,
+                    "y": 5.0
+                },
+                "points": 1,
+                "money": 1
+            }
+        ],
+        "type": "NORMAL",
+        "points": 100,
+        "money": 10
+    }
+]
