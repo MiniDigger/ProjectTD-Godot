@@ -19,9 +19,9 @@ public class Enemy : Node2D {
 	public int speed { get; set; } = 350;
 
 	public float health { get; private set; }
+	public Sprite Sprite { get; private set; }
 
 	private Healthbar _healthbar;
-	private Sprite _sprite;
 	private Path2D _path2d;
 	internal PathFollow2D _rotatingPathFollow;
 	private PathFollow2D _stillPathFollow;
@@ -29,7 +29,7 @@ public class Enemy : Node2D {
 	public override void _Ready() {
 		_path2d = GetNode<Path2D>("Path2D");
 		_rotatingPathFollow = GetNode<PathFollow2D>("Path2D/Rotating");
-		_sprite = GetNode<Sprite>("Path2D/Rotating/Sprite");
+		Sprite = GetNode<Sprite>("Path2D/Rotating/Sprite");
 		_stillPathFollow = GetNode<PathFollow2D>("Path2D/Still");
 		_healthbar = GetNode<Healthbar>("Path2D/Still/Healthbar");
 
@@ -62,7 +62,6 @@ public class Enemy : Node2D {
 
 	public void damage(float damage) {
 		health -= damage;
-		GD.Print($"damage {damage}, health {health}");
 		if (health < 0) {
 			GetTree().CallGroup("state", "addMoney", moneyBounty);
 			GetTree().CallGroup("state", "addPoints", pointBounty);
@@ -79,7 +78,7 @@ public class Enemy : Node2D {
 	}
 
 	public Vector2 getPosition() {
-		return _sprite.GlobalPosition;
+		return Sprite.GlobalPosition;
 	}
 
 	private void UpdateHealthBar() {

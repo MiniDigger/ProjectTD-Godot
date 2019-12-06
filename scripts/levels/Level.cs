@@ -116,6 +116,7 @@ public class Level : Node2D {
 		enemy.pointBounty = waveGroup.points;
 		_enemies.AddChild(enemy);
 		enemy.setPath(_nav.getPathCurve(waveGroup.spawn, waveGroup.goal));
+		enemy.Sprite.Texture = GD.Load<Texture>(waveGroup.sprite);
 
 		waveGroup.count--;
 	}

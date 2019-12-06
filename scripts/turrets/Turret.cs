@@ -40,7 +40,6 @@ public class Turret : Node2D {
 	}
 
 	private void shoot() {
-		GD.Print("shoot");
 		_target.damage(damage);
 	}
 

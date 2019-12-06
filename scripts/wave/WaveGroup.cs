@@ -10,7 +10,7 @@ public class WaveGroup {
 	public int speed { get; set; } = 0;
 	public MinionType type { get; set; } = MinionType.LAND;
 	public int count { get; set; } = 0;
-	//public Sprite sprite { get; set; } = null;
+	public string sprite { get; set; } = "error";
 	public Vector2 spawn { get; set; }
 	public Vector2 goal { get; set; }
 	public int points { get; set; } = 100;

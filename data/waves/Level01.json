@@ -10,6 +10,7 @@
                 "speed": 350,
                 "type": "LAND",
                 "count": 10,
+                "sprite": "res://assets/sprites/enemies/soldier_green.png",
                 "spawn": {
                     "x": 0.0,
                     "y": 2.0
@@ -29,6 +30,7 @@
                 "speed": 200,
                 "type": "LAND",
                 "count": 40,
+                "sprite": "res://assets/sprites/enemies/soldier_brown.png",
                 "spawn": {
                     "x": 0.0,
                     "y": 2.0
@@ -48,6 +50,7 @@
                 "speed": 100,
                 "type": "LAND",
                 "count": 60,
+                "sprite": "res://assets/sprites/enemies/soldier_gray.png",
                 "spawn": {
                     "x": 0.0,
                     "y": 2.0

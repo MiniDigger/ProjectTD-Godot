@@ -20,3 +20,6 @@ https://streamable.com/auv7d
 Applying damage. getting money for killing
 https://streamable.com/sj2yp  
 
+Different skins for enemies
+https://streamable.com/ft6ov  
+
