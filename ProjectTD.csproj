@@ -71,6 +71,9 @@
     <Compile Include="scripts\screens\MainScreen.cs" />
     <Compile Include="scripts\screens\PauseMenu.cs" />
     <Compile Include="scripts\SwipeDetector.cs" />
+    <Compile Include="scripts\turrets\Turret.cs" />
+    <Compile Include="scripts\turrets\TurretDebug.cs" />
+    <Compile Include="scripts\turrets\TurretSelectionStrategy.cs" />
     <Compile Include="scripts\wave\MinionType.cs" />
     <Compile Include="scripts\wave\Wave.cs" />
     <Compile Include="scripts\wave\WaveGroup.cs" />

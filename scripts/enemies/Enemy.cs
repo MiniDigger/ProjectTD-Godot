@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using Godot.Collections;
+using ProjectTD.scripts;
 using ProjectTD.scripts.data;
 using ProjectTD.scripts.hud;
 
@@ -17,20 +18,24 @@ public class Enemy : Node2D {
 	[Export(PropertyHint.Range, "0,100000")]
 	public int speed { get; set; } = 350;
 
-	private float health;
+	public float health { get; private set; }
 
 	private Healthbar _healthbar;
+	private Sprite _sprite;
 	private Path2D _path2d;
-	private PathFollow2D _rotatingPathFollow;
+	internal PathFollow2D _rotatingPathFollow;
 	private PathFollow2D _stillPathFollow;
 
 	public override void _Ready() {
 		_path2d = GetNode<Path2D>("Path2D");
 		_rotatingPathFollow = GetNode<PathFollow2D>("Path2D/Rotating");
+		_sprite = GetNode<Sprite>("Path2D/Rotating/Sprite");
 		_stillPathFollow = GetNode<PathFollow2D>("Path2D/Still");
 		_healthbar = GetNode<Healthbar>("Path2D/Still/Healthbar");
 
 		health = maxHealth;
+
+		AddToGroup("enemies");
 
 		UpdateHealthBar();
 	}
@@ -70,6 +75,10 @@ public class Enemy : Node2D {
 	public void heal(float amount) {
 		health += amount;
 		UpdateHealthBar();
+	}
+
+	public Vector2 getPosition() {
+		return _sprite.GlobalPosition;
 	}
 
 	private void UpdateHealthBar() {

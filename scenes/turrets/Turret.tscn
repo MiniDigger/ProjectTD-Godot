@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/turrets/Turret.cs" type="Script" id=1]
+[ext_resource path="res://assets/sprites/turrets/turret_base_1.png" type="Texture" id=2]
+[ext_resource path="res://scripts/turrets/TurretDebug.cs" type="Script" id=3]
+
+[node name="Turret" type="Node2D"]
+script = ExtResource( 1 )
+range = 300
+
+[node name="Base" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Top" type="Sprite" parent="Base"]
+centered = false
+
+[node name="Debug" type="Node2D" parent="."]
+script = ExtResource( 3 )
