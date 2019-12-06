@@ -14,12 +14,12 @@ public class Player : KinematicBody2D {
 
 	public override void _PhysicsProcess(float delta) {
 		var screenWidth = GetViewport().GetVisibleRect().Size.x;
-
+	
 		var limitLeft = _camera.LimitLeft;
 		var limitRight = _camera.LimitRight - (screenWidth * 2);
-
+	
 		var camX = _camera.GlobalTransform.origin.x;
-
+	
 		if (camX >= limitLeft && camX <= limitRight) { // check limits
 			_motion.x = Input.GetActionStrength("Move_Right") - Input.GetActionStrength("Move_Left");
 			MoveAndCollide(_motion * PanSpeed * delta);

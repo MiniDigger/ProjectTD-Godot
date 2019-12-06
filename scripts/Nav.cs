@@ -3,20 +3,26 @@ using Godot.Collections;
 
 namespace ProjectTD.scripts {
 public class Nav : Node2D {
+	public const int TILE_SIZE = 128;
+	public const int HALF_TILE_SIZE = 128 / 2;
+	public const int QUARTER_TILE_SIZE = 128 / 4;
+
 	private TileMap _tileMap;
+	private DrawNav _drawNav;
 
 	private AStar _aStar;
 
 	private Vector2 gridSize;
-	private int halfTileSize = 128 / 2;
-	private int quarterTileSize = 128 / 4;
 	private Array<bool> obstacles = new Array<bool>();
 
 	public override void _Ready() {
 		_tileMap = GetNode<TileMap>("TileMap");
+		_drawNav = GetNode<DrawNav>("DrawNav");
 
 		calcGridSize();
 		makeGrid();
+
+		_drawNav.init(_aStar, obstacles, gridSize);
 	}
 
 	public Curve2D getPathCurve(Vector2 start, Vector2 end) {
@@ -34,8 +40,11 @@ public class Nav : Node2D {
 			toArrayPos((int) start.x * 2, (int) start.y * 2),
 			toArrayPos((int) end.x * 2, (int) end.y * 2))
 		) {
-			array.Add(new Vector2(point.x, point.z));
+			array.Add(new Vector2(point.x + QUARTER_TILE_SIZE, point.z + QUARTER_TILE_SIZE));
 		}
+
+		_drawNav.Path = array;
+		_drawNav.Update();
 
 		return array;
 	}
@@ -77,17 +86,17 @@ public class Nav : Node2D {
 			_aStar.AddPoint(arrayPos, vec);
 			obstacles[arrayPos] = (bitmask & (int) TileSet.AutotileBindings.Topleft) != 0;
 
-			vec = new Vector3(worldPos.x + halfTileSize, 0, worldPos.y);
+			vec = new Vector3(worldPos.x + HALF_TILE_SIZE, 0, worldPos.y);
 			arrayPos = toArrayPos((int) cellPos.x * 2 + 1, (int) cellPos.y * 2);
 			_aStar.AddPoint(arrayPos, vec);
 			obstacles[arrayPos] = (bitmask & (int) TileSet.AutotileBindings.Topright) != 0;
 
-			vec = new Vector3(worldPos.x, 0, worldPos.y + halfTileSize);
+			vec = new Vector3(worldPos.x, 0, worldPos.y + HALF_TILE_SIZE);
 			arrayPos = toArrayPos((int) cellPos.x * 2, (int) cellPos.y * 2 + 1);
 			_aStar.AddPoint(arrayPos, vec);
 			obstacles[arrayPos] = (bitmask & (int) TileSet.AutotileBindings.Bottomleft) != 0;
 
-			vec = new Vector3(worldPos.x + halfTileSize, 0, worldPos.y + halfTileSize);
+			vec = new Vector3(worldPos.x + HALF_TILE_SIZE, 0, worldPos.y + HALF_TILE_SIZE);
 			arrayPos = toArrayPos((int) cellPos.x * 2 + 1, (int) cellPos.y * 2 + 1);
 			_aStar.AddPoint(arrayPos, vec);
 			obstacles[arrayPos] = (bitmask & (int) TileSet.AutotileBindings.Bottomright) != 0;
@@ -103,9 +112,14 @@ public class Nav : Node2D {
 					_aStar.ConnectPoints(toArrayPos(x, y), toArrayPos(x, y + 1));
 				}
 			}
+
+			int lastX = (int) gridSize.x * 2 - 1;
+			if (!obstacles[toArrayPos(lastX, y)] && !obstacles[toArrayPos(lastX, y + 1)]) {
+				_aStar.ConnectPoints(toArrayPos(lastX, y), toArrayPos(lastX, y + 1));
+			}
 		}
 
-		printArray();
+		//printArray();
 	}
 
 	private void updateTower(int x, int y, bool disabled) {

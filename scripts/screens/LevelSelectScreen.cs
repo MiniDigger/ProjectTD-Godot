@@ -9,7 +9,6 @@ public class LevelSelectScreen : Control {
 		_levelList = GetNode<LevelList>("LevelList");
 		_itemList = GetNode<ItemList>("CenterContainer/VBoxContainer/ItemList");
 		
-		GD.Print($"Loaded {_levelList.Levels.Count} levels");
 		foreach (var level in _levelList.Levels) {
 			_itemList.AddItem(level); // todo get Level name here, not file name
 		}

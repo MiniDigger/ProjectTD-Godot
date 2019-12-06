@@ -45,9 +45,8 @@ public class Enemy : Node2D {
 	}
 
 	public void setPath(Curve2D curve2D) {
-		GD.Print("set curve!");
-		GD.Print(curve2D.GetPointCount());
-		Position = curve2D.GetPointPosition(0);
+		GlobalPosition = curve2D.GetPointPosition(0);
+		Position = new Vector2(0,0);
 		_path2d.SetCurve(curve2D);
 		_rotatingPathFollow.SetOffset(0);
 		_stillPathFollow.SetOffset(0);
