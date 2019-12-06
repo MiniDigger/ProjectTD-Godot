@@ -18,15 +18,30 @@ public class Turret : Node2D {
 
 	private TurretDebug _turretDebug;
 
+	private float time = 0;
+	private Enemy _target;
+
 	public override void _Ready() {
 		_turretDebug = GetNode<TurretDebug>("Debug");
+		time = interval / 1000f;
 
 		_turretDebug.init(range);
 	}
 
 	public override void _Process(float delta) {
-		Enemy target = selectTarget();
-		_turretDebug.init(range, target);
+		_target = selectTarget();
+		_turretDebug.init(range, _target);
+
+		time -= delta;
+		if (_target != null && time < 0) {
+			time = interval / 1000f;
+			shoot();
+		}
+	}
+
+	private void shoot() {
+		GD.Print("shoot");
+		_target.damage(damage);
 	}
 
 	private Enemy selectTarget() {

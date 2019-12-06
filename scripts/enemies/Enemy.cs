@@ -62,6 +62,7 @@ public class Enemy : Node2D {
 
 	public void damage(float damage) {
 		health -= damage;
+		GD.Print($"damage {damage}, health {health}");
 		if (health < 0) {
 			GetTree().CallGroup("state", "addMoney", moneyBounty);
 			GetTree().CallGroup("state", "addPoints", pointBounty);

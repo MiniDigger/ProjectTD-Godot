@@ -110,12 +110,12 @@ public class Level : Node2D {
 		GD.Print($"Spawn {waveGroup.name}");
 		
 		Enemy enemy = (Enemy) _enemy.Instance();
-		_enemies.AddChild(enemy);
-		enemy.setPath(_nav.getPathCurve(waveGroup.spawn, waveGroup.goal));
 		enemy.speed = waveGroup.speed;
 		enemy.maxHealth = waveGroup.health;
 		enemy.moneyBounty = waveGroup.money;
 		enemy.pointBounty = waveGroup.points;
+		_enemies.AddChild(enemy);
+		enemy.setPath(_nav.getPathCurve(waveGroup.spawn, waveGroup.goal));
 
 		waveGroup.count--;
 	}

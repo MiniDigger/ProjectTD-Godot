@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include="PROGRESS.md" />
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
