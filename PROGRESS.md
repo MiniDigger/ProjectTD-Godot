@@ -23,3 +23,6 @@ https://streamable.com/sj2yp
 Different skins for enemies
 https://streamable.com/ft6ov  
 
+Loosing lives
+https://streamable.com/3ngi3  
+

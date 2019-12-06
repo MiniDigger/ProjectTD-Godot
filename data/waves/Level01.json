@@ -47,9 +47,9 @@
                 "delay": 1000,
                 "interval": 100,
                 "health": 25,
-                "speed": 100,
+                "speed": 75,
                 "type": "LAND",
-                "count": 60,
+                "count": 40,
                 "sprite": "res://assets/sprites/enemies/soldier_gray.png",
                 "spawn": {
                     "x": 0.0,

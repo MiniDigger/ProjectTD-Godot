@@ -114,6 +114,7 @@ public class Level : Node2D {
 		enemy.maxHealth = waveGroup.health;
 		enemy.moneyBounty = waveGroup.money;
 		enemy.pointBounty = waveGroup.points;
+		enemy.penalty = waveGroup.penalty;
 		_enemies.AddChild(enemy);
 		enemy.setPath(_nav.getPathCurve(waveGroup.spawn, waveGroup.goal));
 		enemy.Sprite.Texture = GD.Load<Texture>(waveGroup.sprite);

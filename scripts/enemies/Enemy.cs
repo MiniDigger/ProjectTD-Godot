@@ -16,6 +16,9 @@ public class Enemy : Node2D {
 	public int pointBounty { get; set; }
 
 	[Export(PropertyHint.Range, "0,100000")]
+	public int penalty { get; set; } = 1;
+
+	[Export(PropertyHint.Range, "0,100000")]
 	public int speed { get; set; } = 350;
 
 	public float health { get; private set; }
@@ -47,7 +50,8 @@ public class Enemy : Node2D {
 			_stillPathFollow.Offset += speed * delta;
 
 			if (Math.Abs(_rotatingPathFollow.UnitOffset - 1) < 0.001) {
-				GD.Print("DONE");
+				GetTree().CallGroup("state", nameof(Game.removeHealth), penalty);
+				QueueFree();
 			}
 		}
 	}
@@ -63,8 +67,8 @@ public class Enemy : Node2D {
 	public void damage(float damage) {
 		health -= damage;
 		if (health < 0) {
-			GetTree().CallGroup("state", "addMoney", moneyBounty);
-			GetTree().CallGroup("state", "addPoints", pointBounty);
+			GetTree().CallGroup("state", nameof(Game.addMoney), moneyBounty);
+			GetTree().CallGroup("state", nameof(Game.addPoints), pointBounty);
 			QueueFree();
 		}
 		else {

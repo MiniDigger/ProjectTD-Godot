@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using ProjectTD.scripts;
 
 public class HUD : CanvasLayer {
 
@@ -13,14 +14,14 @@ public class HUD : CanvasLayer {
 		_points = GetNode<Label>("Root/Right/Points");
 		_money = GetNode<Label>("Root/Right/Money");
 		_health = GetNode<Label>("Root/Right/Health");
-		
-		updateMoney(0);
-		updateHealth(0);
-		updatePoints(0);
-		
+
 		AddToGroup("ui");
 
 		_root.Visible = true;
+
+		GetTree().CallGroup("state", nameof(Game.removeHealth), 0);
+		GetTree().CallGroup("state", nameof(Game.addMoney), 0);
+		GetTree().CallGroup("state", nameof(Game.addPoints), 0);
 	}
 
 	public void updateMoney(int newVal) {

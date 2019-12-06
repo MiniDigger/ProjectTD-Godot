@@ -15,5 +15,6 @@ public class WaveGroup {
 	public Vector2 goal { get; set; }
 	public int points { get; set; } = 100;
 	public int money { get; set; } = 10;
+	public int penalty { get; set; } = 1;
 }
 }
