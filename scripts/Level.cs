@@ -113,7 +113,10 @@ public class Level : Node2D {
 		_enemies.AddChild(enemy);
 		enemy.setPath(_nav.getPathCurve(waveGroup.spawn, waveGroup.goal));
 		enemy.speed = waveGroup.speed;
-		
+		enemy.maxHealth = waveGroup.health;
+		enemy.moneyBounty = waveGroup.money;
+		enemy.pointBounty = waveGroup.points;
+
 		waveGroup.count--;
 	}
 }

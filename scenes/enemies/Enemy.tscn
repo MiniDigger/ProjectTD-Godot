@@ -7,7 +7,6 @@
 [node name="Enemy" type="Node2D"]
 script = ExtResource( 1 )
 maxHealth = 100.0
-worth = 1
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = null

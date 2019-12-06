@@ -1,20 +1,23 @@
 using Godot;
 using System;
 using Godot.Collections;
+using ProjectTD.scripts.data;
 using ProjectTD.scripts.hud;
 
 public class Enemy : Node2D {
 	[Export(PropertyHint.Range, "0,100000")]
-	private float maxHealth;
+	public float maxHealth { get; set; }
 
 	[Export(PropertyHint.Range, "0,100000")]
-	private int worth;
+	public int moneyBounty { get; set; }
+
+	[Export(PropertyHint.Range, "0,100000")]
+	public int pointBounty { get; set; }
 
 	[Export(PropertyHint.Range, "0,100000")]
 	public int speed { get; set; } = 350;
 
 	private float health;
-
 
 	private Healthbar _healthbar;
 	private Path2D _path2d;
@@ -55,7 +58,8 @@ public class Enemy : Node2D {
 	public void damage(float damage) {
 		health -= damage;
 		if (health < 0) {
-			GetTree().CallGroup("state", "addMoney", worth);
+			GetTree().CallGroup("state", "addMoney", moneyBounty);
+			GetTree().CallGroup("state", "addPoints", pointBounty);
 			QueueFree();
 		}
 		else {
@@ -70,5 +74,7 @@ public class Enemy : Node2D {
 
 	private void UpdateHealthBar() {
 		_healthbar.setValue((health / maxHealth) * 100);
+
+		_healthbar.Visible = Math.Abs(maxHealth - health) > 0.001;
 	}
 }
