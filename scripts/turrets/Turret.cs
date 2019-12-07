@@ -48,7 +48,7 @@ public class Turret : Node2D {
 		float currentData = -1;
 		Vector2 pos = GlobalPosition + new Vector2(Nav.HALF_TILE_SIZE, Nav.HALF_TILE_SIZE);
 		foreach (var node in GetTree().GetNodesInGroup("enemies")) {
-			if (node is Enemy enemy) {
+			if (node is Enemy enemy && !enemy.dead) {
 				float distance = enemy._rotatingPathFollow.GlobalPosition.DistanceSquaredTo(pos);
 				if (distance <= range * range) {
 					Result result = Strategy.Calculate(current, enemy, currentData, distance);

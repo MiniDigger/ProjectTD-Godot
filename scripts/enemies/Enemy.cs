@@ -23,11 +23,14 @@ public class Enemy : Node2D {
 
 	public float health { get; private set; }
 	public Sprite Sprite { get; private set; }
+	
+	public bool dead { get; private set; }
 
 	private Healthbar _healthbar;
 	private Path2D _path2d;
 	internal PathFollow2D _rotatingPathFollow;
 	private PathFollow2D _stillPathFollow;
+	private Particles2D _moneyParticle;
 
 	public override void _Ready() {
 		_path2d = GetNode<Path2D>("Path2D");
@@ -35,6 +38,7 @@ public class Enemy : Node2D {
 		Sprite = GetNode<Sprite>("Path2D/Rotating/Sprite");
 		_stillPathFollow = GetNode<PathFollow2D>("Path2D/Still");
 		_healthbar = GetNode<Healthbar>("Path2D/Still/Healthbar");
+		_moneyParticle = GetNode<Particles2D>("Path2D/Still/MoneyParticle");
 
 		health = maxHealth;
 
@@ -64,11 +68,16 @@ public class Enemy : Node2D {
 		_stillPathFollow.SetOffset(0);
 	}
 
-	public void damage(float damage) {
+	public async void damage(float damage) {
 		health -= damage;
 		if (health < 0) {
 			GetTree().CallGroup("state", nameof(Game.addMoney), moneyBounty);
 			GetTree().CallGroup("state", nameof(Game.addPoints), pointBounty);
+			dead = true;
+			Sprite.Visible = false;
+			_healthbar.Visible = false;
+			_moneyParticle.Emitting = true;
+			await ToSignal(GetTree().CreateTimer(1), "timeout");
 			QueueFree();
 		}
 		else {

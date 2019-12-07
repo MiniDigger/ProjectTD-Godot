@@ -1,8 +1,40 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/enemies/Enemy.cs" type="Script" id=1]
 [ext_resource path="res://assets/sprites/enemies/soldier_green.png" type="Texture" id=2]
 [ext_resource path="res://scenes/hud/Healthbar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sprites/items/gold_1.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/items/gold_2.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/items/gold_3.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/items/gold_4.png" type="Texture" id=7]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0.363357, 0.9906 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.2514 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+flag_disable_z = true
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 300.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.5
+scale_curve = SubResource( 2 )
+
+[sub_resource type="AnimatedTexture" id=4]
+flags = 4
+frames = 4
+fps = 10.0
+frame_0/texture = ExtResource( 4 )
+frame_1/texture = ExtResource( 5 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 6 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 7 )
+frame_3/delay_sec = 0.0
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource( 1 )
@@ -26,3 +58,14 @@ margin_left = -19.5688
 margin_top = 17.6328
 margin_right = -0.568817
 margin_bottom = 17.6328
+
+[node name="MoneyParticle" type="Particles2D" parent="Path2D/Still"]
+rotation = -1.5708
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+visibility_rect = Rect2( -10, -20, 200, 40 )
+local_coords = false
+process_material = SubResource( 3 )
+texture = SubResource( 4 )
