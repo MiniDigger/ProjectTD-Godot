@@ -31,3 +31,6 @@ https://streamable.com/s4j7p
 
 Tower placement
 https://streamable.com/wc3jb
+
+Make tower placement affect nav
+https://i.imgur.com/Wo7GO3z.gifv

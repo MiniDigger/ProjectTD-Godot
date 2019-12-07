@@ -12,6 +12,7 @@ interval = 50
 Strategy = 2
 
 [node name="Base" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 2 )
 centered = false
 

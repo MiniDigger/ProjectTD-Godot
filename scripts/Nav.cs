@@ -23,6 +23,8 @@ public class Nav : Node2D {
 		makeGrid();
 
 		_drawNav.init(_aStar, obstacles, gridSize);
+
+		AddToGroup("Nav");
 	}
 
 	public Curve2D getPathCurve(Vector2 start, Vector2 end) {
@@ -50,11 +52,14 @@ public class Nav : Node2D {
 	}
 
 	public void addTower(int x, int y) {
+		GD.Print("AddTower " + x + " " + y);
 		updateTower(x, y, true);
+		_drawNav.Update();
 	}
 
 	public void removeTower(int x, int y) {
 		updateTower(x, y, false);
+		_drawNav.Update();
 	}
 
 	public void makeGrid() {
