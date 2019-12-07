@@ -26,3 +26,8 @@ https://streamable.com/ft6ov
 Loosing lives
 https://streamable.com/3ngi3  
 
+Particles for killing stuff
+https://streamable.com/s4j7p
+
+Tower placement
+https://streamable.com/wc3jb

@@ -17,7 +17,10 @@ public class Level : Node2D {
 	private PauseMenu _pauseMenu;
 	private Nav _nav;
 	private Node _enemies;
+	private Node _turrets;
 	private Node _timers;
+
+	private readonly PackedScene _turretScene = GD.Load<PackedScene>("res://scenes/turrets/Turret.tscn");
 
 	private bool done = false;
 	private List<Wave> waves = new List<Wave>();
@@ -29,7 +32,10 @@ public class Level : Node2D {
 		_pauseMenu = GetNode<PauseMenu>("PauseMenu");
 		_nav = GetNode<Nav>("Nav");
 		_enemies = GetNode<Node>("Enemies");
+		_turrets = GetNode<Node>("Turrets");
 		_timers = GetNode<Node>("Timers");
+		
+		AddToGroup("level");
 		
 		loadData();
 		startNextWave();
@@ -41,6 +47,14 @@ public class Level : Node2D {
 		}
 	}
 
+	// turret stuff
+	public void placeTurret(Vector2 pos, string name) {
+		Turret turret = (Turret) _turretScene.Instance();
+		turret.Position = pos;
+		_turrets.AddChild(turret);
+	}
+	
+	// wave stuff
 	private void loadData() {
 		waves = FileHandler.loadJson<List<Wave>>($"res://data/waves/{LevelName}.json");
 		GD.Print($"Loaded {waves.Count} waves");
